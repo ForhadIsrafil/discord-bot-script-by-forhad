@@ -12,12 +12,12 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.command(name="ping")
 async def ping(ctx):
-    print(ctx.guild)
-    print(ctx.guild.id)
-    print(ctx.message)
-    print(ctx.message.channel.id)
-    print(ctx.author.name)
-    print(ctx.author.mention)
+    # print(ctx.guild)
+    # print(ctx.guild.id)
+    # print(ctx.message)
+    # print(ctx.message.channel.id)
+    # print(ctx.author.name)
+    # print(ctx.author.mention)
     await ctx.send("pong")
 
 
@@ -33,7 +33,8 @@ async def hello(ctx, name: str = None):
 
 @bot.slash_command(name="member", description="member joint date",)
 async def members(ctx, *, member: discord.Member):
-    await ctx.respond(f'{member} joined on {member.joined_at}')
+    await ctx.respond(embed=discord.Embed(title=f'{member} joined on \'{member.joined_at.strftime("%A %B %Y")}\''))
+    # await ctx.respond(f'{member} joined on \'{member.joined_at.strftime("%A %B %Y")}\'')
 
 
 @bot.command(name="dm")
@@ -41,6 +42,17 @@ async def dm(ctx, *, user: discord.Member, message=None):
     embed = discord.Embed(title="good day")
     await user.send(embed=embed)
     await ctx.message.delete()
+
+
+
+
+
+
+
+
+
+
+
 
 
 bot.run(env.str("TOKEN", ''))
